@@ -1,0 +1,260 @@
+{
+  "version": "2026-10-21",
+  "advertencia": "Base inicial armada con fuentes públicas. Ningún trámite está validado por la notaría todavía: el bot debe decir que la información es orientativa y que se confirma en la notaría.",
+  "tarifas": {
+    "vigencia_desde": "2026-02-01",
+    "fuente": "https://www.gerencie.com/tarifas-notariales-y-registrales-en-colombia.html",
+    "nota_fuente": "Valores tomados de Gerencie, que resume la resolución de tarifas notariales 2026 de la SNR. Verificar contra la resolución oficial antes de producción.",
+    "iva": 0.19,
+    "reglas": {
+      "actos_con_cuantia": {
+        "descripcion": "Escrituras con valor (ej. compraventa): mínimo 30.900 hasta 259.300 de cuantía; sobre el excedente, 3 por mil. Se redondea a la centena más próxima.",
+        "base": 30900,
+        "umbral": 259300,
+        "tasa_excedente": 0.003,
+        "redondeo": 100,
+        "tope_particulares": 43848600,
+        "nota": "Se liquida sobre el mayor valor entre la cuantía pactada, el avalúo catastral, el autoavalúo o el valor del remate."
+      },
+      "sucesion": {
+        "descripcion": "Liquidación de herencia: 90.600 hasta una cuantía de 19.277.909; sobre el excedente, 3,5 por mil.",
+        "base": 90600,
+        "umbral": 19277909,
+        "tasa_excedente": 0.0035,
+        "redondeo": 100,
+        "nota": "La fuente no indica redondeo para esta regla; se asume a la centena. Validar."
+      }
+    },
+    "gratuitos": [
+      "Inscripción de hechos y actos del estado civil en el despacho notarial",
+      "Escrituras de reconocimiento de hijos extramatrimoniales",
+      "Primera copia del registro civil de nacimiento",
+      "Primera copia destinada a la cédula por primera vez",
+      "Declaración extraproceso de la mujer cabeza de familia",
+      "Certificaciones de supervivencia",
+      "Reconocimiento de documentos privados de personas con discapacidad"
+    ]
+  },
+  "tramites": [
+    {
+      "codigo": "autenticacion",
+      "nombre": "Autenticación o reconocimiento de firma",
+      "sinonimos": ["autenticar", "autenticar firma", "reconocimiento de firma", "presentación personal", "reconocimiento de documento", "firmar un documento", "autenticar un contrato"],
+      "descripcion": "El notario da fe de que la firma en un documento es de quien la pone y verifica su identidad.",
+      "requisitos": [
+        "Cédula de ciudadanía original de cada persona que firma",
+        "El documento a autenticar, sin firmar si la firma se hace ante el notario"
+      ],
+      "casos_especiales": [],
+      "tarifa": { "tipo": "fija", "valor": 2800, "unidad": "por firma", "iva": true, "adicionales": [{ "concepto": "Hoja adicional en reconocimiento de firma y contenido", "valor": 280, "unidad": "por hoja" }, { "concepto": "Identificación biométrica cotejada con la Registraduría", "valor": 4800, "unidad": "por actuación" }] },
+      "notas": ["Si quien firma es una persona con discapacidad, el reconocimiento es gratuito."],
+      "fuentes": ["https://www.gerencie.com/tarifas-notariales-y-registrales-en-colombia.html", "https://www.lafm.com.co/colombia/los-tramites-que-se-pueden-hacer-en-una-notaria"],
+      "validado_por_notaria": false
+    },
+    {
+      "codigo": "declaracion_extraproceso",
+      "nombre": "Declaración extraproceso (extrajuicio o juramentada)",
+      "sinonimos": ["declaración juramentada", "extrajuicio", "declaración extrajuicio", "declaración bajo juramento", "declaración de convivencia", "declaración de dependencia económica"],
+      "descripcion": "Declaración bajo juramento ante notario sobre hechos que la persona conoce, por ejemplo convivencia, dependencia económica o pérdida de documentos.",
+      "requisitos": [
+        "Cédula de ciudadanía original de cada declarante",
+        "Tener claros los hechos y datos que se van a declarar (nombres, fechas, documentos de las personas mencionadas)"
+      ],
+      "casos_especiales": ["La declaración de mujer cabeza de familia es gratuita."],
+      "tarifa": { "tipo": "fija", "valor": 19900, "unidad": "por declaración, sin importar el número de declarantes", "iva": true },
+      "notas": ["Requisitos generales: confirmar con la notaría si para un caso particular piden algo más."],
+      "fuentes": ["https://www.gerencie.com/tarifas-notariales-y-registrales-en-colombia.html"],
+      "validado_por_notaria": false
+    },
+    {
+      "codigo": "copia_autentica",
+      "nombre": "Copia auténtica de escritura o documento",
+      "sinonimos": ["copia de escritura", "copia auténtica", "copia autenticada", "sacar copia de una escritura", "copia simple"],
+      "descripcion": "Copia de una escritura u otro documento que reposa en la notaría, con valor de original.",
+      "requisitos": [
+        "Número de la escritura y año, o los datos que permitan ubicarla",
+        "Cédula de quien la solicita"
+      ],
+      "casos_especiales": [],
+      "tarifa": { "tipo": "fija", "valor": 5600, "unidad": "por hoja (ambas caras)", "iva": true, "adicionales": [{ "concepto": "Copia simple física", "valor": 700, "unidad": "por cara, IVA incluido" }] },
+      "notas": ["El valor de la copia auténtica incluye fotocopia y papel de seguridad."],
+      "fuentes": ["https://www.gerencie.com/tarifas-notariales-y-registrales-en-colombia.html"],
+      "validado_por_notaria": false
+    },
+    {
+      "codigo": "registro_civil_nacimiento",
+      "nombre": "Registro civil de nacimiento (inscripción)",
+      "sinonimos": ["registrar un bebé", "registrar a mi hijo", "registro civil", "inscribir nacimiento", "registro de nacimiento"],
+      "descripcion": "Inscripción del nacimiento de una persona en el registro civil.",
+      "requisitos": [
+        "Certificado de nacido vivo, expedido hace no más de 30 días",
+        "Cédulas originales de los padres (o cédula de extranjería o pasaporte)",
+        "Si el certificado de nacido vivo está vencido, la declaración de dos testigos"
+      ],
+      "casos_especiales": [],
+      "tarifa": { "tipo": "gratuito" },
+      "notas": ["La inscripción en la notaría y la primera copia del registro son gratuitas."],
+      "fuentes": ["https://www.lafm.com.co/colombia/los-tramites-que-se-pueden-hacer-en-una-notaria", "https://www.gerencie.com/tarifas-notariales-y-registrales-en-colombia.html"],
+      "validado_por_notaria": false
+    },
+    {
+      "codigo": "matrimonio_civil",
+      "nombre": "Matrimonio civil",
+      "sinonimos": ["casarse", "casarnos", "matrimonio", "boda civil", "matrimonio por notaría"],
+      "descripcion": "Celebración del matrimonio civil por escritura pública ante notario.",
+      "requisitos": [
+        "Ambos contrayentes mayores de 18 años",
+        "Solicitud de matrimonio con datos de ambos y de sus padres, declarando que no hay impedimento",
+        "Registro civil de nacimiento de cada uno, expedido hace no más de 30 días",
+        "Fotocopia de la cédula de cada uno",
+        "Poder especial, si alguno actúa por medio de apoderado"
+      ],
+      "casos_especiales": [
+        "Si alguno estuvo casado: registro civil de defunción del cónyuge anterior, o registros que reflejen el divorcio o la nulidad",
+        "Si alguno tiene hijos menores de otra relación: inventario solemne de bienes de esos hijos, o declaración de que no existen",
+        "Extranjeros: pasaporte, registro civil y prueba de estado civil, apostillados y traducidos"
+      ],
+      "tarifa": { "tipo": "fija", "valor": 64700, "unidad": "en la sede de la notaría", "iva": true, "adicionales": [{ "concepto": "Matrimonio fuera del despacho notarial", "valor": 174800, "unidad": "por acto, en lugar de la tarifa en sede" }] },
+      "notas": [
+        "Desde la Ley 2447 de 2025 no se pueden casar menores de 18 años, ni siquiera con permiso de los padres.",
+        "La notaría fija un edicto por 5 días hábiles antes de la ceremonia; conviene radicar la solicitud con una semana de anticipación.",
+        "No se exigen testigos ni abogado."
+      ],
+      "fuentes": ["https://www.gerencie.com/formalidades-para-contraer-matrimonio-civil-entre-colombianos.html", "https://www.gerencie.com/tarifas-notariales-y-registrales-en-colombia.html"],
+      "validado_por_notaria": false
+    },
+    {
+      "codigo": "divorcio_mutuo_acuerdo",
+      "nombre": "Divorcio de mutuo acuerdo",
+      "sinonimos": ["divorcio", "divorciarse", "separarnos", "cesación de efectos civiles", "divorcio por notaría"],
+      "descripcion": "Divorcio del matrimonio civil, o cesación de efectos civiles del religioso, cuando ambos están de acuerdo.",
+      "requisitos": [
+        "Abogado que adelante el trámite, con poder, cédula y tarjeta profesional",
+        "Registro civil de matrimonio",
+        "Registro civil de nacimiento de cada cónyuge",
+        "Fotocopia de la cédula de cada cónyuge",
+        "Si hay hijos, sus registros civiles de nacimiento"
+      ],
+      "casos_especiales": ["Si hay hijos menores, el acuerdo sobre custodia, alimentos y visitas suele requerir concepto del defensor de familia: confirmar en la notaría."],
+      "tarifa": { "tipo": "fija", "valor": 90600, "unidad": "por acto (acto sin cuantía)", "iva": true },
+      "notas": ["Los honorarios del abogado no están incluidos."],
+      "fuentes": ["https://www.lafm.com.co/colombia/los-tramites-que-se-pueden-hacer-en-una-notaria", "https://www.gerencie.com/tarifas-notariales-y-registrales-en-colombia.html"],
+      "validado_por_notaria": false
+    },
+    {
+      "codigo": "sucesion",
+      "nombre": "Sucesión (liquidación de herencia)",
+      "sinonimos": ["herencia", "sucesión", "repartir bienes de un fallecido", "liquidar herencia", "murió mi papá", "murió mi mamá"],
+      "descripcion": "Reparto por escritura pública de los bienes de una persona fallecida, cuando los herederos están de acuerdo.",
+      "requisitos": [
+        "Solicitud, inventario de bienes y trabajo de partición y adjudicación, con sus anexos (normalmente los elabora un abogado)",
+        "Registro civil de defunción del fallecido, autenticado",
+        "Registros civiles de nacimiento de los herederos, autenticados",
+        "Copia de las escrituras de los inmuebles del fallecido, si los hay",
+        "Certificados de tradición y libertad de los inmuebles, con no más de 30 días",
+        "Recibo del impuesto predial del año en curso y paz y salvo de valorización"
+      ],
+      "casos_especiales": [],
+      "tarifa": { "tipo": "cuantia", "regla": "sucesion", "iva": true },
+      "notas": ["Para estimar el costo se necesita el valor total de los bienes.", "Hay costos adicionales fuera de la notaría (impuestos y registro de los inmuebles)."],
+      "fuentes": ["https://www.lafm.com.co/colombia/los-tramites-que-se-pueden-hacer-en-una-notaria", "https://www.gerencie.com/tarifas-notariales-y-registrales-en-colombia.html"],
+      "validado_por_notaria": false
+    },
+    {
+      "codigo": "compraventa_inmueble",
+      "nombre": "Escritura de compraventa de inmueble",
+      "sinonimos": ["comprar casa", "vender casa", "escritura", "escriturar", "compraventa", "comprar lote", "vender apartamento", "pasar la casa a mi nombre"],
+      "descripcion": "Escritura pública con la que se vende un inmueble y se transfiere su propiedad.",
+      "requisitos": [
+        "Cédula de comprador y vendedor (fotocopia)",
+        "Manifestación del estado civil de cada parte (casado, unión libre o soltero)",
+        "Certificado de tradición y libertad del inmueble",
+        "Escritura con la que el vendedor adquirió el inmueble",
+        "Recibo del impuesto predial del año en curso",
+        "Paz y salvo de administración, si el inmueble está en propiedad horizontal",
+        "Certificado de Cámara de Comercio, si alguna parte es una empresa"
+      ],
+      "casos_especiales": ["Algunas notarías recomiendan certificado médico de lucidez si el vendedor es mayor de 70 años."],
+      "tarifa": { "tipo": "cuantia", "regla": "actos_con_cuantia", "iva": true },
+      "notas": [
+        "Para estimar el costo se necesita el valor de la venta (o el avalúo catastral, si es mayor).",
+        "No incluye: hojas y copias de la escritura, retención en la fuente, ni impuesto y derechos de registro, que se pagan aparte."
+      ],
+      "fuentes": ["https://www.ciencuadras.com/blog/guia-para-vender-inmuebles/cuales-documentos-necesito-para-vender-un-inmueble-en-colombia", "https://www.gerencie.com/tarifas-notariales-y-registrales-en-colombia.html"],
+      "validado_por_notaria": false
+    },
+    {
+      "codigo": "permiso_salida_menor",
+      "nombre": "Permiso de salida del país de un menor",
+      "sinonimos": ["permiso de salida", "permiso para viajar", "viajar con mi hijo", "salida del país menor", "permiso de viaje menor"],
+      "descripcion": "Autorización del padre o madre que no viaja para que un menor salga del país.",
+      "requisitos": [
+        "Permiso escrito con fecha de salida, propósito del viaje, fecha de regreso y con quién viaja el menor (formato de Migración Colombia)",
+        "Firma autenticada ante notario del padre o madre que otorga el permiso",
+        "Cédula original de quien otorga el permiso",
+        "Registro civil de nacimiento del menor, si su pasaporte no muestra el nombre de los padres"
+      ],
+      "casos_especiales": [
+        "Si un padre falleció: registro civil de defunción",
+        "Si los padres no se ponen de acuerdo: el permiso lo da un juez de familia",
+        "Si un solo padre tiene la patria potestad: copia de la sentencia ejecutoriada",
+        "Si el permiso se dio por escritura pública: copia con certificado de vigencia"
+      ],
+      "tarifa": { "tipo": "opciones", "iva": true, "opciones": [{ "descripcion": "Permiso en documento con firma autenticada", "valor": 2800, "unidad": "por firma" }, { "descripcion": "Permiso otorgado por escritura pública", "valor": 90600, "unidad": "por escritura (acto sin cuantía)" }] },
+      "notas": ["La fuente de tarifas no menciona este trámite por nombre: los valores son los de autenticación y escritura sin cuantía. Validar.", "Confirmar requisitos vigentes con Migración Colombia antes del viaje."],
+      "fuentes": ["https://www.cancilleria.gov.co/sala-de-prensa/noticias/requisitos-que-se-deben-cumplir-para-viajar-con-ninos-colombianos-al-exterior-evitese-contratiempos", "https://www.gerencie.com/tarifas-notariales-y-registrales-en-colombia.html"],
+      "validado_por_notaria": false
+    },
+    {
+      "codigo": "cambio_nombre",
+      "nombre": "Cambio de nombre o apellido",
+      "sinonimos": ["cambiar mi nombre", "cambiar de nombre", "cambiar apellido", "cambio de nombre"],
+      "descripcion": "Escritura pública para cambiar el nombre o el apellido de una persona.",
+      "requisitos": [
+        "Cédula original y fotocopia ampliada al 150 %",
+        "Copia auténtica y reciente del registro civil de nacimiento"
+      ],
+      "casos_especiales": [
+        "Los menores de edad lo hacen por medio de sus padres o representantes legales",
+        "Normalmente solo se puede hacer una vez en la vida, salvo excepciones (cambio hecho siendo menor, identidad de género, situaciones de riesgo)"
+      ],
+      "tarifa": { "tipo": "fija", "valor": 64700, "unidad": "por escritura", "iva": true },
+      "notas": ["Se hace en la notaría donde se registró el nacimiento.", "Después hay que actualizar el registro civil y rectificar la cédula en la Registraduría, que cobra aparte."],
+      "fuentes": ["https://newsroom.rcnradio.com/colombia/cambio-de-nombre-en-colombia-2026-asi-puedes-hacerlo-legalmente-paso-a-paso", "https://www.gerencie.com/tarifas-notariales-y-registrales-en-colombia.html"],
+      "validado_por_notaria": false
+    },
+    {
+      "codigo": "poder",
+      "nombre": "Poder (especial o general)",
+      "sinonimos": ["poder", "dar un poder", "poder especial", "poder general", "apoderado", "autorizar a alguien"],
+      "descripcion": "Documento con el que una persona autoriza a otra para actuar en su nombre. El especial es para un asunto concreto; el general, para muchos.",
+      "requisitos": [
+        "Cédula original de quien otorga el poder",
+        "Nombre completo y número de cédula del apoderado",
+        "Texto con las facultades que se otorgan (para el especial, el asunto concreto)"
+      ],
+      "casos_especiales": [],
+      "tarifa": { "tipo": "opciones", "iva": true, "opciones": [{ "descripcion": "Poder especial en documento con firma autenticada", "valor": 2800, "unidad": "por firma" }, { "descripcion": "Poder general por escritura pública", "valor": 90600, "unidad": "por escritura (acto sin cuantía)" }] },
+      "notas": ["Requisitos generales: confirmar con la notaría según el uso que se le dará al poder."],
+      "fuentes": ["https://www.gerencie.com/tarifas-notariales-y-registrales-en-colombia.html"],
+      "validado_por_notaria": false
+    },
+    {
+      "codigo": "capitulaciones",
+      "nombre": "Capitulaciones matrimoniales",
+      "sinonimos": ["capitulaciones", "separación de bienes antes del matrimonio", "acuerdo de bienes"],
+      "descripcion": "Acuerdo por escritura pública, antes del matrimonio o la unión, sobre cómo se manejarán los bienes de la pareja.",
+      "requisitos": [
+        "Cédulas de ambos",
+        "Relación detallada de los bienes de cada uno",
+        "Explicación del acuerdo al que llegaron",
+        "Recibo del impuesto predial del año en curso de cada inmueble, para su valoración"
+      ],
+      "casos_especiales": [],
+      "tarifa": { "tipo": "consultar" },
+      "notas": ["La fuente de tarifas no precisa este acto: el costo se confirma en la notaría."],
+      "fuentes": ["https://www.lafm.com.co/colombia/los-tramites-que-se-pueden-hacer-en-una-notaria"],
+      "validado_por_notaria": false
+    }
+  ]
+}
