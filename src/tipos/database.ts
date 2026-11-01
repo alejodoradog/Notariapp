@@ -1,6 +1,3 @@
-// PROVISIONAL: generado en B1 desde las 3 migraciones aplicadas en un Postgres local,
-// porque la sesión no tenía acceso a Supabase. Reemplázalo con: npm run tipos:db
-
 export type Json =
   | string
   | number
@@ -10,97 +7,102 @@ export type Json =
   | Json[]
 
 export type Database = {
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
+  __InternalSupabase: {
+    PostgrestVersion: "14.18"
+  }
   public: {
     Tables: {
       audit_log: {
         Row: {
-          seq: number
-          notaria_id: string
-          usuario_id: string | null
-          tabla: string
           accion: string
-          registro_id: string
           antes: Json | null
-          despues: Json | null
           creado_en: string
-          hash_anterior: string | null
+          despues: Json | null
           hash: string
+          hash_anterior: string | null
+          notaria_id: string
+          registro_id: string
+          seq: number
+          tabla: string
+          usuario_id: string | null
         }
         Insert: {
-          seq?: number
-          notaria_id: string
-          usuario_id?: string | null
-          tabla: string
           accion: string
-          registro_id: string
           antes?: Json | null
-          despues?: Json | null
           creado_en: string
-          hash_anterior?: string | null
+          despues?: Json | null
           hash: string
+          hash_anterior?: string | null
+          notaria_id: string
+          registro_id: string
+          seq?: never
+          tabla: string
+          usuario_id?: string | null
         }
         Update: {
-          seq?: number
-          notaria_id?: string
-          usuario_id?: string | null
-          tabla?: string
           accion?: string
-          registro_id?: string
           antes?: Json | null
-          despues?: Json | null
           creado_en?: string
-          hash_anterior?: string | null
+          despues?: Json | null
           hash?: string
+          hash_anterior?: string | null
+          notaria_id?: string
+          registro_id?: string
+          seq?: never
+          tabla?: string
+          usuario_id?: string | null
         }
         Relationships: []
       }
       catalogo_tramites: {
         Row: {
-          id: string
-          notaria_id: string | null
-          codigo: string
-          nombre: string
-          sinonimos: string[]
-          descripcion: string
-          requisitos: string[]
-          casos_especiales: string[]
-          notas: string[]
-          tarifa: Json
-          fuentes: string[]
-          validado_por_notaria: boolean
           activo: boolean
+          casos_especiales: string[]
+          codigo: string
+          descripcion: string
+          fuentes: string[]
+          id: string
+          nombre: string
+          notaria_id: string | null
+          notas: string[]
+          requisitos: string[]
+          sinonimos: string[]
+          tarifa: Json
+          validado_por_notaria: boolean
           vigencia_desde: string
         }
         Insert: {
-          id?: string
-          notaria_id?: string | null
-          codigo: string
-          nombre: string
-          sinonimos?: string[]
-          descripcion: string
-          requisitos: string[]
-          casos_especiales?: string[]
-          notas?: string[]
-          tarifa: Json
-          fuentes?: string[]
-          validado_por_notaria?: boolean
           activo?: boolean
+          casos_especiales?: string[]
+          codigo: string
+          descripcion: string
+          fuentes?: string[]
+          id?: string
+          nombre: string
+          notaria_id?: string | null
+          notas?: string[]
+          requisitos: string[]
+          sinonimos?: string[]
+          tarifa: Json
+          validado_por_notaria?: boolean
           vigencia_desde: string
         }
         Update: {
-          id?: string
-          notaria_id?: string | null
-          codigo?: string
-          nombre?: string
-          sinonimos?: string[]
-          descripcion?: string
-          requisitos?: string[]
-          casos_especiales?: string[]
-          notas?: string[]
-          tarifa?: Json
-          fuentes?: string[]
-          validado_por_notaria?: boolean
           activo?: boolean
+          casos_especiales?: string[]
+          codigo?: string
+          descripcion?: string
+          fuentes?: string[]
+          id?: string
+          nombre?: string
+          notaria_id?: string | null
+          notas?: string[]
+          requisitos?: string[]
+          sinonimos?: string[]
+          tarifa?: Json
+          validado_por_notaria?: boolean
           vigencia_desde?: string
         }
         Relationships: [
@@ -115,18 +117,18 @@ export type Database = {
       }
       consecutivos: {
         Row: {
-          notaria_id: string
           anio: number
+          notaria_id: string
           ultimo: number
         }
         Insert: {
-          notaria_id: string
           anio: number
+          notaria_id: string
           ultimo: number
         }
         Update: {
-          notaria_id?: string
           anio?: number
+          notaria_id?: string
           ultimo?: number
         }
         Relationships: [
@@ -141,33 +143,33 @@ export type Database = {
       }
       conversaciones: {
         Row: {
+          atendida_por: string | null
+          estado: string
           id: string
+          iniciada_en: string
+          nombre_perfil: string | null
           notaria_id: string
           telefono: string
-          nombre_perfil: string | null
-          estado: string
-          atendida_por: string | null
-          iniciada_en: string
           ultima_actividad: string
         }
         Insert: {
+          atendida_por?: string | null
+          estado?: string
           id?: string
+          iniciada_en?: string
+          nombre_perfil?: string | null
           notaria_id: string
           telefono: string
-          nombre_perfil?: string | null
-          estado?: string
-          atendida_por?: string | null
-          iniciada_en?: string
           ultima_actividad?: string
         }
         Update: {
+          atendida_por?: string | null
+          estado?: string
           id?: string
+          iniciada_en?: string
+          nombre_perfil?: string | null
           notaria_id?: string
           telefono?: string
-          nombre_perfil?: string | null
-          estado?: string
-          atendida_por?: string | null
-          iniciada_en?: string
           ultima_actividad?: string
         }
         Relationships: [
@@ -189,31 +191,31 @@ export type Database = {
       }
       liquidacion_items: {
         Row: {
+          concepto: string
+          creado_en: string
           id: string
           notaria_id: string
-          tramite_id: string
-          concepto: string
           tipo: string
+          tramite_id: string
           valor: number
-          creado_en: string
         }
         Insert: {
+          concepto: string
+          creado_en?: string
           id?: string
           notaria_id: string
-          tramite_id: string
-          concepto: string
           tipo: string
+          tramite_id: string
           valor: number
-          creado_en?: string
         }
         Update: {
+          concepto?: string
+          creado_en?: string
           id?: string
           notaria_id?: string
-          tramite_id?: string
-          concepto?: string
           tipo?: string
+          tramite_id?: string
           valor?: number
-          creado_en?: string
         }
         Relationships: [
           {
@@ -234,52 +236,52 @@ export type Database = {
       }
       mensajes: {
         Row: {
-          id: string
-          notaria_id: string
-          conversacion_id: string
-          direccion: string
           autor: string
-          empleado_id: string | null
-          wa_message_id: string | null
-          tipo: string
           contenido: string | null
-          intencion: string | null
-          tramite_codigo: string | null
-          herramientas: Json | null
+          conversacion_id: string
           creado_en: string
+          direccion: string
+          empleado_id: string | null
           fecha_operativa: string
+          herramientas: Json | null
+          id: string
+          intencion: string | null
+          notaria_id: string
+          tipo: string
+          tramite_codigo: string | null
+          wa_message_id: string | null
         }
         Insert: {
-          id?: string
-          notaria_id: string
-          conversacion_id: string
-          direccion: string
           autor: string
-          empleado_id?: string | null
-          wa_message_id?: string | null
-          tipo?: string
           contenido?: string | null
-          intencion?: string | null
-          tramite_codigo?: string | null
-          herramientas?: Json | null
+          conversacion_id: string
           creado_en?: string
+          direccion: string
+          empleado_id?: string | null
           fecha_operativa?: string
+          herramientas?: Json | null
+          id?: string
+          intencion?: string | null
+          notaria_id: string
+          tipo?: string
+          tramite_codigo?: string | null
+          wa_message_id?: string | null
         }
         Update: {
-          id?: string
-          notaria_id?: string
-          conversacion_id?: string
-          direccion?: string
           autor?: string
-          empleado_id?: string | null
-          wa_message_id?: string | null
-          tipo?: string
           contenido?: string | null
-          intencion?: string | null
-          tramite_codigo?: string | null
-          herramientas?: Json | null
+          conversacion_id?: string
           creado_en?: string
+          direccion?: string
+          empleado_id?: string | null
           fecha_operativa?: string
+          herramientas?: Json | null
+          id?: string
+          intencion?: string | null
+          notaria_id?: string
+          tipo?: string
+          tramite_codigo?: string | null
+          wa_message_id?: string | null
         }
         Relationships: [
           {
@@ -307,40 +309,40 @@ export type Database = {
       }
       notaria_perfil: {
         Row: {
-          notaria_id: string
-          nombre_publico: string
+          actualizado_en: string
           ciudad: string
-          direccion: string | null
-          telefono: string | null
           correo: string | null
+          direccion: string | null
           horario: string | null
           mapa_url: string | null
+          nombre_publico: string
+          notaria_id: string
           politica_datos_url: string | null
-          actualizado_en: string
+          telefono: string | null
         }
         Insert: {
-          notaria_id: string
-          nombre_publico: string
+          actualizado_en?: string
           ciudad: string
-          direccion?: string | null
-          telefono?: string | null
           correo?: string | null
+          direccion?: string | null
           horario?: string | null
           mapa_url?: string | null
+          nombre_publico: string
+          notaria_id: string
           politica_datos_url?: string | null
-          actualizado_en?: string
+          telefono?: string | null
         }
         Update: {
-          notaria_id?: string
-          nombre_publico?: string
+          actualizado_en?: string
           ciudad?: string
-          direccion?: string | null
-          telefono?: string | null
           correo?: string | null
+          direccion?: string | null
           horario?: string | null
           mapa_url?: string | null
+          nombre_publico?: string
+          notaria_id?: string
           politica_datos_url?: string | null
-          actualizado_en?: string
+          telefono?: string | null
         }
         Relationships: [
           {
@@ -354,70 +356,70 @@ export type Database = {
       }
       notarias: {
         Row: {
-          id: string
           codigo: string
+          id: string
           nombre: string
         }
         Insert: {
-          id?: string
           codigo: string
+          id?: string
           nombre: string
         }
         Update: {
-          id?: string
           codigo?: string
+          id?: string
           nombre?: string
         }
         Relationships: []
       }
       notificaciones: {
         Row: {
-          id: string
-          notaria_id: string
-          tramite_id: string
-          evento_id: string
-          parte_id: string
-          telefono: string
-          motivo: string
-          detalle: string | null
-          estado: string
-          intentos: number
-          wa_message_id: string | null
-          error: string | null
           creado_en: string
+          detalle: string | null
+          error: string | null
+          estado: string
+          evento_id: string
+          id: string
+          intentos: number
+          motivo: string
+          notaria_id: string
+          parte_id: string
           procesada_en: string | null
+          telefono: string
+          tramite_id: string
+          wa_message_id: string | null
         }
         Insert: {
-          id?: string
-          notaria_id: string
-          tramite_id: string
-          evento_id: string
-          parte_id: string
-          telefono: string
-          motivo: string
-          detalle?: string | null
-          estado?: string
-          intentos?: number
-          wa_message_id?: string | null
-          error?: string | null
           creado_en?: string
+          detalle?: string | null
+          error?: string | null
+          estado?: string
+          evento_id: string
+          id?: string
+          intentos?: number
+          motivo: string
+          notaria_id: string
+          parte_id: string
           procesada_en?: string | null
+          telefono: string
+          tramite_id: string
+          wa_message_id?: string | null
         }
         Update: {
-          id?: string
-          notaria_id?: string
-          tramite_id?: string
-          evento_id?: string
-          parte_id?: string
-          telefono?: string
-          motivo?: string
-          detalle?: string | null
-          estado?: string
-          intentos?: number
-          wa_message_id?: string | null
-          error?: string | null
           creado_en?: string
+          detalle?: string | null
+          error?: string | null
+          estado?: string
+          evento_id?: string
+          id?: string
+          intentos?: number
+          motivo?: string
+          notaria_id?: string
+          parte_id?: string
           procesada_en?: string | null
+          telefono?: string
+          tramite_id?: string
+          wa_message_id?: string | null
         }
         Relationships: [
           {
@@ -452,52 +454,52 @@ export type Database = {
       }
       pagos: {
         Row: {
-          id: string
-          notaria_id: string
-          tramite_id: string
-          sesion_caja_id: string
-          registrado_por: string
-          tipo: string
-          monto: number
-          metodo: string
-          factura_sin: string | null
-          reversa_de: string | null
-          motivo: string | null
           autorizado_por: string | null
-          fecha_operativa: string
           creado_en: string
+          factura_sin: string | null
+          fecha_operativa: string
+          id: string
+          metodo: string
+          monto: number
+          motivo: string | null
+          notaria_id: string
+          registrado_por: string
+          reversa_de: string | null
+          sesion_caja_id: string
+          tipo: string
+          tramite_id: string
         }
         Insert: {
-          id?: string
-          notaria_id: string
-          tramite_id: string
-          sesion_caja_id: string
-          registrado_por: string
-          tipo: string
-          monto: number
-          metodo: string
-          factura_sin?: string | null
-          reversa_de?: string | null
-          motivo?: string | null
           autorizado_por?: string | null
-          fecha_operativa?: string
           creado_en?: string
+          factura_sin?: string | null
+          fecha_operativa?: string
+          id?: string
+          metodo: string
+          monto: number
+          motivo?: string | null
+          notaria_id: string
+          registrado_por: string
+          reversa_de?: string | null
+          sesion_caja_id: string
+          tipo: string
+          tramite_id: string
         }
         Update: {
-          id?: string
-          notaria_id?: string
-          tramite_id?: string
-          sesion_caja_id?: string
-          registrado_por?: string
-          tipo?: string
-          monto?: number
-          metodo?: string
-          factura_sin?: string | null
-          reversa_de?: string | null
-          motivo?: string | null
           autorizado_por?: string | null
-          fecha_operativa?: string
           creado_en?: string
+          factura_sin?: string | null
+          fecha_operativa?: string
+          id?: string
+          metodo?: string
+          monto?: number
+          motivo?: string | null
+          notaria_id?: string
+          registrado_por?: string
+          reversa_de?: string | null
+          sesion_caja_id?: string
+          tipo?: string
+          tramite_id?: string
         }
         Relationships: [
           {
@@ -546,46 +548,46 @@ export type Database = {
       }
       sesiones_caja: {
         Row: {
-          id: string
-          notaria_id: string
-          cajero_id: string
-          base_inicial: number
           abierta_en: string
+          aprobada_en: string | null
+          aprobada_por: string | null
+          base_inicial: number
+          cajero_id: string
           cerrada_en: string | null
+          diferencia: number | null
           efectivo_contado: number | null
           efectivo_esperado: number | null
-          diferencia: number | null
-          aprobada_por: string | null
-          aprobada_en: string | null
           fecha_operativa: string
+          id: string
+          notaria_id: string
         }
         Insert: {
+          abierta_en?: string
+          aprobada_en?: string | null
+          aprobada_por?: string | null
+          base_inicial?: number
+          cajero_id: string
+          cerrada_en?: string | null
+          diferencia?: number | null
+          efectivo_contado?: number | null
+          efectivo_esperado?: number | null
+          fecha_operativa?: string
           id?: string
           notaria_id: string
-          cajero_id: string
-          base_inicial?: number
-          abierta_en?: string
-          cerrada_en?: string | null
-          efectivo_contado?: number | null
-          efectivo_esperado?: number | null
-          diferencia?: number | null
-          aprobada_por?: string | null
-          aprobada_en?: string | null
-          fecha_operativa?: string
         }
         Update: {
-          id?: string
-          notaria_id?: string
-          cajero_id?: string
-          base_inicial?: number
           abierta_en?: string
+          aprobada_en?: string | null
+          aprobada_por?: string | null
+          base_inicial?: number
+          cajero_id?: string
           cerrada_en?: string | null
+          diferencia?: number | null
           efectivo_contado?: number | null
           efectivo_esperado?: number | null
-          diferencia?: number | null
-          aprobada_por?: string | null
-          aprobada_en?: string | null
           fecha_operativa?: string
+          id?: string
+          notaria_id?: string
         }
         Relationships: [
           {
@@ -613,61 +615,61 @@ export type Database = {
       }
       solicitudes: {
         Row: {
-          id: string
-          notaria_id: string
-          conversacion_id: string | null
-          tipo: string
-          tramite_codigo: string | null
-          nombre: string
-          telefono: string
-          detalle: string | null
-          preferencia_horario: string | null
           autoriza_datos: boolean
           autorizado_en: string
           codigo_seguimiento: string
-          estado: string
-          nota_interna: string | null
-          tramite_id: string | null
+          conversacion_id: string | null
           creado_en: string
+          detalle: string | null
+          estado: string
           fecha_operativa: string
+          id: string
+          nombre: string
+          nota_interna: string | null
+          notaria_id: string
+          preferencia_horario: string | null
+          telefono: string
+          tipo: string
+          tramite_codigo: string | null
+          tramite_id: string | null
         }
         Insert: {
-          id?: string
-          notaria_id: string
-          conversacion_id?: string | null
-          tipo: string
-          tramite_codigo?: string | null
-          nombre: string
-          telefono: string
-          detalle?: string | null
-          preferencia_horario?: string | null
           autoriza_datos: boolean
           autorizado_en?: string
           codigo_seguimiento?: string
-          estado?: string
-          nota_interna?: string | null
-          tramite_id?: string | null
+          conversacion_id?: string | null
           creado_en?: string
+          detalle?: string | null
+          estado?: string
           fecha_operativa?: string
+          id?: string
+          nombre: string
+          nota_interna?: string | null
+          notaria_id: string
+          preferencia_horario?: string | null
+          telefono: string
+          tipo: string
+          tramite_codigo?: string | null
+          tramite_id?: string | null
         }
         Update: {
-          id?: string
-          notaria_id?: string
-          conversacion_id?: string | null
-          tipo?: string
-          tramite_codigo?: string | null
-          nombre?: string
-          telefono?: string
-          detalle?: string | null
-          preferencia_horario?: string | null
           autoriza_datos?: boolean
           autorizado_en?: string
           codigo_seguimiento?: string
-          estado?: string
-          nota_interna?: string | null
-          tramite_id?: string | null
+          conversacion_id?: string | null
           creado_en?: string
+          detalle?: string | null
+          estado?: string
           fecha_operativa?: string
+          id?: string
+          nombre?: string
+          nota_interna?: string | null
+          notaria_id?: string
+          preferencia_horario?: string | null
+          telefono?: string
+          tipo?: string
+          tramite_codigo?: string | null
+          tramite_id?: string | null
         }
         Relationships: [
           {
@@ -695,40 +697,40 @@ export type Database = {
       }
       tramite_eventos: {
         Row: {
-          id: string
-          notaria_id: string
-          tramite_id: string
-          tipo: string
-          estado_anterior: string | null
-          estado_nuevo: string | null
-          detalle: string | null
-          visible_ciudadano: boolean
           autor_id: string | null
           creado_en: string
+          detalle: string | null
+          estado_anterior: string | null
+          estado_nuevo: string | null
+          id: string
+          notaria_id: string
+          tipo: string
+          tramite_id: string
+          visible_ciudadano: boolean
         }
         Insert: {
+          autor_id?: string | null
+          creado_en?: string
+          detalle?: string | null
+          estado_anterior?: string | null
+          estado_nuevo?: string | null
           id?: string
           notaria_id: string
-          tramite_id: string
           tipo: string
-          estado_anterior?: string | null
-          estado_nuevo?: string | null
-          detalle?: string | null
+          tramite_id: string
           visible_ciudadano?: boolean
-          autor_id?: string | null
-          creado_en?: string
         }
         Update: {
-          id?: string
-          notaria_id?: string
-          tramite_id?: string
-          tipo?: string
-          estado_anterior?: string | null
-          estado_nuevo?: string | null
-          detalle?: string | null
-          visible_ciudadano?: boolean
           autor_id?: string | null
           creado_en?: string
+          detalle?: string | null
+          estado_anterior?: string | null
+          estado_nuevo?: string | null
+          id?: string
+          notaria_id?: string
+          tipo?: string
+          tramite_id?: string
+          visible_ciudadano?: boolean
         }
         Relationships: [
           {
@@ -756,46 +758,46 @@ export type Database = {
       }
       tramite_partes: {
         Row: {
-          id: string
-          notaria_id: string
-          tramite_id: string
-          nombre: string
-          tipo_documento: string
-          documento: string | null
-          telefono: string | null
-          rol: string
           autoriza_datos: boolean
-          recibe_avisos: boolean
-          creado_por: string | null
           creado_en: string
+          creado_por: string | null
+          documento: string | null
+          id: string
+          nombre: string
+          notaria_id: string
+          recibe_avisos: boolean
+          rol: string
+          telefono: string | null
+          tipo_documento: string
+          tramite_id: string
         }
         Insert: {
-          id?: string
-          notaria_id: string
-          tramite_id: string
-          nombre: string
-          tipo_documento?: string
-          documento?: string | null
-          telefono?: string | null
-          rol: string
           autoriza_datos?: boolean
-          recibe_avisos?: boolean
-          creado_por?: string | null
           creado_en?: string
+          creado_por?: string | null
+          documento?: string | null
+          id?: string
+          nombre: string
+          notaria_id: string
+          recibe_avisos?: boolean
+          rol: string
+          telefono?: string | null
+          tipo_documento?: string
+          tramite_id: string
         }
         Update: {
-          id?: string
-          notaria_id?: string
-          tramite_id?: string
-          nombre?: string
-          tipo_documento?: string
-          documento?: string | null
-          telefono?: string | null
-          rol?: string
           autoriza_datos?: boolean
-          recibe_avisos?: boolean
-          creado_por?: string | null
           creado_en?: string
+          creado_por?: string | null
+          documento?: string | null
+          id?: string
+          nombre?: string
+          notaria_id?: string
+          recibe_avisos?: boolean
+          rol?: string
+          telefono?: string | null
+          tipo_documento?: string
+          tramite_id?: string
         }
         Relationships: [
           {
@@ -823,37 +825,37 @@ export type Database = {
       }
       tramites: {
         Row: {
-          id: string
-          notaria_id: string
-          radicado: string
           codigo_consulta: string
-          tipo_tramite: string
+          creado_en: string
           empleado_id: string
           estado: string
           fecha_operativa: string
-          creado_en: string
-        }
-        Insert: {
-          id?: string
+          id: string
           notaria_id: string
           radicado: string
-          codigo_consulta?: string
           tipo_tramite: string
+        }
+        Insert: {
+          codigo_consulta?: string
+          creado_en?: string
           empleado_id: string
           estado?: string
           fecha_operativa?: string
-          creado_en?: string
+          id?: string
+          notaria_id: string
+          radicado: string
+          tipo_tramite: string
         }
         Update: {
-          id?: string
-          notaria_id?: string
-          radicado?: string
           codigo_consulta?: string
-          tipo_tramite?: string
+          creado_en?: string
           empleado_id?: string
           estado?: string
           fecha_operativa?: string
-          creado_en?: string
+          id?: string
+          notaria_id?: string
+          radicado?: string
+          tipo_tramite?: string
         }
         Relationships: [
           {
@@ -874,25 +876,25 @@ export type Database = {
       }
       usuarios: {
         Row: {
-          id: string
-          notaria_id: string
-          nombre: string
-          rol: string
           activo: boolean
+          id: string
+          nombre: string
+          notaria_id: string
+          rol: string
         }
         Insert: {
-          id: string
-          notaria_id: string
-          nombre: string
-          rol: string
           activo?: boolean
+          id: string
+          nombre: string
+          notaria_id: string
+          rol: string
         }
         Update: {
-          id?: string
-          notaria_id?: string
-          nombre?: string
-          rol?: string
           activo?: boolean
+          id?: string
+          nombre?: string
+          notaria_id?: string
+          rol?: string
         }
         Relationships: [
           {
@@ -909,64 +911,60 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      abrir_caja: {
-        Args: { p_base?: number }
-        Returns: string
-      }
+      abrir_caja: { Args: { p_base?: number }; Returns: string }
       agregar_nota: {
-        Args: { p_tramite: string; p_texto: string }
+        Args: { p_texto: string; p_tramite: string }
         Returns: string
       }
       agregar_parte: {
-        Args: { p_tramite: string; p_nombre: string; p_rol: string; p_tipo_documento?: string; p_documento?: string; p_telefono?: string; p_autoriza_datos?: boolean; p_recibe_avisos?: boolean }
+        Args: {
+          p_autoriza_datos?: boolean
+          p_documento?: string
+          p_nombre: string
+          p_recibe_avisos?: boolean
+          p_rol: string
+          p_telefono?: string
+          p_tipo_documento?: string
+          p_tramite: string
+        }
         Returns: string
       }
-      aprobar_sesion: {
-        Args: { p_sesion: string }
-        Returns: undefined
-      }
+      aprobar_sesion: { Args: { p_sesion: string }; Returns: undefined }
       atender_solicitud: {
-        Args: { p_solicitud: string; p_estado: string; p_nota?: string }
+        Args: { p_estado: string; p_nota?: string; p_solicitud: string }
         Returns: undefined
       }
       calcular_hash: {
-        Args: { p_prev: string; p_tabla: string; p_accion: string; p_registro: string; p_usuario: string; p_antes: Json; p_despues: Json; p_creado: string }
+        Args: {
+          p_accion: string
+          p_antes: Json
+          p_creado: string
+          p_despues: Json
+          p_prev: string
+          p_registro: string
+          p_tabla: string
+          p_usuario: string
+        }
         Returns: string
       }
       cambiar_estado: {
-        Args: { p_tramite: string; p_estado: string; p_detalle?: string }
+        Args: { p_detalle?: string; p_estado: string; p_tramite: string }
         Returns: string
       }
-      cerrar_caja: {
-        Args: { p_contado: number }
-        Returns: undefined
-      }
-      convertir_solicitud: {
-        Args: { p_solicitud: string }
-        Returns: string
-      }
-      devolver_al_bot: {
-        Args: { p_conversacion: string }
-        Returns: undefined
-      }
-      mi_notaria: {
-        Args: never
-        Returns: string
-      }
-      mi_rol: {
-        Args: never
-        Returns: string
-      }
-      normalizar_telefono: {
-        Args: { p: string }
-        Returns: string
-      }
-      radicar_tramite: {
-        Args: { p_tipo: string }
-        Returns: string
-      }
+      cerrar_caja: { Args: { p_contado: number }; Returns: undefined }
+      convertir_solicitud: { Args: { p_solicitud: string }; Returns: string }
+      devolver_al_bot: { Args: { p_conversacion: string }; Returns: undefined }
+      mi_notaria: { Args: never; Returns: string }
+      mi_rol: { Args: never; Returns: string }
+      normalizar_telefono: { Args: { p: string }; Returns: string }
+      radicar_tramite: { Args: { p_tipo: string }; Returns: string }
       registrar_pago: {
-        Args: { p_tramite: string; p_metodo: string; p_factura_sin: string; p_monto?: number }
+        Args: {
+          p_factura_sin: string
+          p_metodo: string
+          p_monto?: number
+          p_tramite: string
+        }
         Returns: string
       }
       registrar_respuesta_empleado: {
@@ -974,17 +972,14 @@ export type Database = {
         Returns: string
       }
       reversar_pago: {
-        Args: { p_pago: string; p_motivo: string }
+        Args: { p_motivo: string; p_pago: string }
         Returns: string
       }
       sello_del_dia: {
-        Args: { p_notaria: string; p_fecha: string }
+        Args: { p_fecha: string; p_notaria: string }
         Returns: string
       }
-      siguiente_radicado: {
-        Args: { p_notaria: string }
-        Returns: string
-      }
+      siguiente_radicado: { Args: { p_notaria: string }; Returns: string }
       tomar_conversacion: {
         Args: { p_conversacion: string }
         Returns: undefined
@@ -993,10 +988,7 @@ export type Database = {
         Args: { p_notaria: string; p_telefono: string }
         Returns: Json
       }
-      verificar_cadena: {
-        Args: { p_notaria: string }
-        Returns: number
-      }
+      verificar_cadena: { Args: { p_notaria: string }; Returns: number }
     }
     Enums: {
       [_ in never]: never
@@ -1007,13 +999,125 @@ export type Database = {
   }
 }
 
-type DefaultSchema = Database["public"]
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
 
-export type Tables<T extends keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])> =
-  (DefaultSchema["Tables"] & DefaultSchema["Views"])[T] extends { Row: infer R } ? R : never
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
 
-export type TablesInsert<T extends keyof DefaultSchema["Tables"]> =
-  DefaultSchema["Tables"][T] extends { Insert: infer I } ? I : never
+export type Tables<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
+    : never) = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
+    : never
 
-export type TablesUpdate<T extends keyof DefaultSchema["Tables"]> =
-  DefaultSchema["Tables"][T] extends { Update: infer U } ? U : never
+export type TablesInsert<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never) = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
+    : never
+
+export type TablesUpdate<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never) = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
+    : never
+
+export type Enums<
+  DefaultSchemaEnumNameOrOptions extends
+    | keyof DefaultSchema["Enums"]
+    | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends (DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    : never) = never,
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+    : never
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof DefaultSchema["CompositeTypes"]
+    | { schema: keyof DatabaseWithoutInternals },
+  CompositeTypeName extends (PublicCompositeTypeNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never) = never,
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+    : never
+
+export const Constants = {
+  public: {
+    Enums: {},
+  },
+} as const
